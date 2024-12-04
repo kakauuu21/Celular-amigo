@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'CSS/login.css' %}" >
+<!------ Include the above in your HEAD tag ---------->
+  </head>
+<body id="LoginForm">
+<div class="container">
+<h1 class="form-heading">Login </h1>
+<div class="login-form">
+<div class="main-div">
+    <div class="panel">
+
+
+   </div>
+    <form id="login-form" class="form" action="{% url 'logar'%}" method="post">
+          {% csrf_token %}
+        <div class="form-group">
+
+
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" name="username">
+
+        </div>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+
+        </div>
+
+        <div>
+            <input type="submit" name="submit" class="btn btn-info btn=md" value="Entrar">
+            <a href="{% url 'Fcadcliente' %}" class="text-info">Cadastre-se</a>
+           </div>
+
+
+    </form>
+    </div>
+
+</div></div></div>
+
+
+</body>
+</html>
+
+

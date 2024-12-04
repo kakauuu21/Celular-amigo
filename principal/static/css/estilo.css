@@ -1,0 +1,10 @@
+body{
+    background-color: #ccc;
+}
+
+.imagens img{
+    width: 300px;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+}
