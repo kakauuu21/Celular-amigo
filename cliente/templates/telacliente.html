@@ -1,52 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>História da Loja de Celulares</title>
-    <link rel="stylesheet" href="telacli.css">
-</head>
-<body>
-    <header>
-        <h1>Bem-vindo à nossa Loja de Celulares</h1>
-        <nav>
-            <ul>
-                <li><a href="#historia">Nossa História</a></li>
-                <li><a href="#servicos">Nossos Serviços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+{% load static %}
 
-    <section id="historia">
-        <h2>A História da Loja</h2>
-        <p>Fundada em 2010, a nossa loja de celulares nasceu com a missão de trazer as últimas inovações em smartphones para nossos clientes. Desde o início, nosso foco tem sido oferecer não apenas os melhores produtos, mas também um atendimento personalizado, com conselhos sobre qual dispositivo atende melhor as necessidades de cada cliente.</p>
-        <p>Com o passar dos anos, nossa loja se tornou referência na cidade, oferecendo uma ampla variedade de smartphones, acessórios e serviços especializados, como reparo e personalização de dispositivos.</p>
-        <p>Acreditamos que a tecnologia pode melhorar a vida das pessoas, e é por isso que trabalhamos para proporcionar as melhores soluções móveis para nossos clientes.</p>
-    </section>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <section id="servicos">
-        <h2>Nossos Serviços</h2>
-        <ul>
-            <li><strong>Venda de Celulares:</strong> Smartphones das principais marcas do mercado.</li>
-            <li><strong>Acessórios:</strong> Capas, fones de ouvido, carregadores e muito mais.</li>
-            <li><strong>Assistência Técnica:</strong> Reparos rápidos e confiáveis para o seu celular.</li>
-            <li><strong>Consultoria Personalizada:</strong> Ajudamos a escolher o celular ideal para o seu perfil e necessidades.</li>
-        </ul>
-    </section>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <section id="contato">
-        <h2>Entre em Contato Conosco</h2>
-        <p>Se você tiver dúvidas ou quiser saber mais sobre nossos produtos e serviços, entre em contato conosco:</p>
-        <address>
-            <p><strong>Email:</strong> contato@lojacelular.com.br</p>
-            <p><strong>Telefone:</strong> (11) 1234-5678</p>
-            <p><strong>Endereço:</strong> Rua Exemplo, 123, Centro - Cidade, Estado</p>
-        </address>
-    </section>
+      <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <title>Celular Amigo</title>
+  </head>
+  <body>
 
-    <footer>
-        <p>&copy; 2024 Loja de Celulares. Todos os direitos reservados.</p>
-    </footer>
-</body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+  <a class="nav-link" href="{% url 'exibir_cli' %}">Dados Pessoais</a>
+</li>
+      <!-- TRABALHAR A SESSÃO DO USUÁRIO -->
+       <ul class="navbar-nav ml-auto">
+        {% if request.session.cliente_nome %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+          </li>
+           <li class="nav-item">
+            <span class="navbar-text">Bem-vindo, {{ request.session.cliente_nome }}!</span>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'flogincli' %}">Entrar</a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </ul>
+  </div>
+</nav>
+
+
+<!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
 </html>
