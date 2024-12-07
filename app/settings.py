@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'cliente',
     'produto',
     'principal',
-
+    'carrinho',
 
 
 

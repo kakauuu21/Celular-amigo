@@ -37,7 +37,7 @@ def exibir_cli(request, id=None):
             return redirect('findex')  # Redirecione para uma página de sua escolha
     else:
         messages.error(request, 'Você não está logado.')
-        return redirect('flogin')  # Redirecione para a página de login
+        return redirect('flogincli')  # Redirecione para a página de login
 
 
 

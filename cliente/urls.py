@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import fcliente, Fcadcliente, salvar_cli, exibir_cli, excluir_cli, update_cli, ftelacli, flogincli,logar
+from .views import fcliente, Fcadcliente, salvar_cli, exibir_cli, excluir_cli, update_cli, ftelacli, flogincli, logar, logout
 
 urlpatterns = [
     path('', fcliente),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('update_cli/<int:id>', update_cli, name='update_cli'),
     path('ftelacli/', ftelacli, name='ftelacli'),
     path('flogincli/', flogincli, name='flogincli'),
-    path('logar/', logar, name='logar')
-
+    path('logar/', logar, name='logar'),
+    path('logout/', logout, name='logout')
 
 ]
