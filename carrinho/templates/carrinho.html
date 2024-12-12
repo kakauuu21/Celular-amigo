@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Carrinho de Compras</title>
+    <style>
+        .btn {
+            margin-top: 10px;
+        }
+        .produto {
+            margin: 10px 0;
+        }
+        #finalizar-compra {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Carrinho de Compras</h2>
+
+    <!-- Carrinho de Compras -->
+    <table class="table" id="carrinho">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-carrinho">
+          {% for item in itens %}
+             <tr>
+             <td>{{ item.produto.nome }}</td>
+             <td>{{ item.quantidade }}</td>
+             <td>R$ {{ item.total_preco }}</td>
+             <td>
+         <!-- Corrigido: passando o produto.id corretamente -->
+       <form action="{% url 'excluirca' produto_id=item.produto.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger">Excluir</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+        </tbody>
+    </table>
+    <h4>Total: R$ {{ total }}</h4>
+
+    <!-- Botão Finalizar Compra -->
+    <button class="btn btn-success" id="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+
+<script>
+    // Função para remover item do carrinho
+    function removerItem(index) {
+        // Remover o item da tabela HTML
+        document.getElementById('item-' + index).remove();
+
+        // Lógica para remover o item do carrinho no backend (com JavaScript ou Flask)
+        // Aqui você poderia fazer uma requisição para o servidor para remover o item da lista de itens do carrinho
+        alert('Item removido com sucesso!');
+    }
+
+    // Função para finalizar a compra
+    function finalizarCompra() {
+        // Limpar o carrinho após a compra
+        const tbody = document.getElementById('tbody-carrinho');
+        tbody.innerHTML = '';  // Limpa os itens na tabela
+
+        // Alterar o total
+        document.querySelector('h4').innerHTML = 'Total: R$ 0.00';
+
+        // Enviar os dados da compra para o backend, se necessário
+        // Aqui você pode enviar os dados do carrinho para o servidor para gravar a compra
+
+        alert('Compra finalizada com sucesso!');
+    }
+</script>
+
+</body>
+</html>
