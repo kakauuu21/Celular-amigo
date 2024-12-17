@@ -1,0 +1,39 @@
+
+
+.sliders{
+display:flex;
+justify-conect:center;
+gap:5px;
+}
+
+.sliders div{
+height:500px;
+width:120px;
+border: 2px solid white;
+boder-radius: 10px;
+}
+
+.div1{
+background-image:url(div1.jfif);
+background-position: center;
+transition:width 0.5 ease;
+
+}
+.div2{
+background-image:url(div1.jfif);
+background-position: center;
+transition:width 0.5 ease;
+
+}
+.div3{
+background-image:url(div1.jfif);
+background-position: center;
+transition:width 0.5 ease;
+
+}
+.div4{
+background-image:url(div1.jfif);
+background-position: center;
+transition:width 0.5 ease;
+
+}

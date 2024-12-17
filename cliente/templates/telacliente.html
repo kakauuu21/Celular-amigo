@@ -1,61 +1,225 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="pt-br">
-  <head>
-    <!-- Meta tags Obrigatórias -->
+<head>
+    <!-- Meta Tags Obrigatórias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Celular Amigo - As melhores ofertas de dispositivos móveis.">
+    <meta name="author" content="Equipe Celular Amigo">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-      <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+
     <title>Celular Amigo</title>
-  </head>
-  <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'findex' %}">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+<style>
+    /* Corpo */
+    body {
+        background-color: #121212; /* Fundo escuro */
+        color: #eaeaea; /* Texto claro */
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
 
-      <li class="nav-item">
-  <a class="nav-link" href="{% url 'exibir_cli' %}">Dados Pessoais</a>
-</li>
+    /* Navbar */
+    .navbar-dark {
+        background-color: #1a1a1a;
+        color: #eaeaea;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.7); /* Links em branco translúcido */
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: #ccc; /* Links ao passar o mouse */
+    }
+
+    /* Botões */
+    .btn-primary {
+        background-color: #6c757d; /* Cinza médio */
+        border-color: #6c757d;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a6268; /* Cinza mais escuro */
+        border-color: #545b62;
+    }
+
+    .btn-light {
+        background-color: #eaeaea; /* Botão claro */
+        color: #121212; /* Texto escuro */
+    }
+
+    .btn-light:hover {
+        background-color: #d4d4d4;
+    }
+
+    /* Cartões */
+    .card {
+        background-color: #222;
+        border: 1px solid #333;
+        color: #eaeaea;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card a {
+        color: #bbb; /* Links dentro dos cartões */
+        text-decoration: none;
+    }
+
+    .card a:hover {
+        color: #fff;
+    }
+
+    /* Inputs */
+    .form-control {
+        background-color: #222;
+        color: #eaeaea;
+        border: 1px solid #333;
+    }
+
+    .form-control::placeholder {
+        color: #bbb;
+    }
+
+    .form-control:focus {
+        background-color: #333;
+        border-color: #6c757d; /* Cinza médio */
+    }
+
+    /* Rodapé */
+    footer {
+        background-color: #1a1a1a;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    footer a {
+        color: #bbb;
+    }
+
+    footer a:hover {
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{% url 'findex' %}">Celular Amigo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'exibir_cli' %}">Dados Pessoais</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'exibir_carrinho' %}">Carrinho</a></li>
+        </ul>
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'exibir_carrinho' %}">Carrinho</a>
-      </li>
-      <!-- TRABALHAR A SESSÃO DO USUÁRIO -->
-       <ul class="navbar-nav ml-auto">
-
-      {% if request.session.cliente_nome %}
-        <li class="nav-item">
-          <span class="navbar-text">Bem-vindo, {{ request.session.cliente_nome }}!</span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-        </li>
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'flogin' %}">Entrar</a>
-        </li>
-      {% endif %}
-    </ul>
-
-    </ul>
-  </div>
+            {% if request.session.cliente_nome %}
+                <li class="nav-item"><span class="navbar-text">Bem-vindo, {{ request.session.cliente_nome }}!</span></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'flogincli' %}">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
 
+<!-- Hero Section -->
+<header class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">Bem-vindo ao Celular Amigo</h1>
+        <p class="lead">Aqui você encontra os melhores dispositivos e ofertas imperdíveis!</p>
+        <a href="{% url 'flista_produtos' %}" class="btn btn-light btn-lg mt-3">Ver produtos</a>
+    </div>
+</header>
+
+<!-- Conteúdo restante... -->
+
+
+<!-- Seção de Destaques -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Destaques da Semana</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/iphone16.jpg' %}" alt="Produto 1">
+                <div class="card-body">
+                    <h5 class="card-title">Smartphone X</h5>
+                    <p class="card-text">O melhor desempenho e design em um só lugar.</p>
+                    <a href="{% url 'flista_produtos' %}" class="btn btn-primary">Ver mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/pro.jfif' %}" alt="Produto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Tablet Pro</h5>
+                    <p class="card-text">Potência e versatilidade para o seu dia a dia.</p>
+                    <a href="{% url 'flista_produtos' %}" class="btn btn-primary">Ver mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/fone.jfif' %}" alt="Produto 3">
+                <div class="card-body">
+                    <h5 class="card-title">Fone de Ouvido</h5>
+                    <p class="card-text">Experimente áudio de alta qualidade sem igual.</p>
+                    <a href="{% url 'flista_produtos' %}" class="btn btn-primary">Ver mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Contato -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Fale Conosco</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Seu email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea class="form-control" id="mensagem" rows="4" placeholder="Digite sua mensagem..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</section>
+
+<!-- Rodapé -->
+<footer class="bg-dark text-light py-3 mt-4">
+    <div class="container text-center">
+        <small>&copy; 2024 Celular Amigo. Todos os direitos reservados. | <a href="#" class="text-light">Política de Privacidade</a></small>
+    </div>
+</footer>
 
 <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
 </html>

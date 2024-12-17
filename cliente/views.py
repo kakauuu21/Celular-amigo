@@ -29,15 +29,11 @@ def exibir_cli(request, id=None):
         id = request.session.get('cliente_id')
 
     if id is not None:
-        try:
-            cliente = Cliente.objects.get(id=id)
-            return render(request, "update_cli.html", {"cliente": cliente})
-        except Cliente.DoesNotExist:
-            messages.error(request, 'Cliente não encontrado.')
-            return redirect('findex')  # Redirecione para uma página de sua escolha
+        cliente = get_object_or_404(Cliente, id=id)  # Substitui o bloco try/except por um atalho
+        return render(request, "update_cli.html", {"cliente": cliente})
     else:
         messages.error(request, 'Você não está logado.')
-        return redirect('flogincli')  # Redirecione para a página de login
+        return redirect('flogincli')
 
 
 
